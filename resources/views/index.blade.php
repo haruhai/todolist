@@ -221,18 +221,25 @@ input, select {
           </tr>
           @foreach ($items as $item)
           <tr>
-            <td width="30%">{{$item->created_at}}</td>
-            <td width="40%">
-            <input type="text" class="todo-content" value="{{$item->content}}">
-            </td>
-            <td>
             <form action="/todo/update" method="POST">
-                <input class="update-button" type="submit" name="update" value="更新"/>
-              </form>
+              @csrf
+              <td width="30%">{{$item->created_at}}</td>
+              <td width="40%">
+                <input type="hidden" class="todo-id" name="id"  value="{{$item->id}}">
+                <input type="text" class="todo-content" name="content" value="{{$item->content}}">
               </td>
-            <td>
+              <td>
+                <input class="update-button" type="submit" value="更新"/>
+              </td>
+            </form>
+            <form action="/todo/delete" method="POST">
+            @csrf
+              <td>
+              <input type="hidden" class="todo-id" name="id"  value="{{$item->id}}">
+              <input type="hidden" class="todo-content" name="content" value="{{$item->content}}">
                 <input class="delete-button" type="submit" value="削除"/>
               </td>
+            </form>
           </tr>
           @endforeach
 </table>

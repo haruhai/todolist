@@ -157,27 +157,24 @@ input, select {
 </head>
 @section('content')
 <body>
-<div class="container">
-<div class="main">
-<h1>Todo List</h1>
-<form action="/todo/create" method="POST">
+  <div class="container">
+  <div class="main">
+    <h1>Todo List</h1>
+    <form action="/todo/create" method="POST">
     @csrf
     <div class="todo-form">
-        <input type="text" name="content">
-        <input class="add-button" type="submit" value="追加"/>
-        </div>
-</form>
+      <input type="text" name="content">
+      <input class="add-button" type="submit" value="追加"/>
+    </form>
+  </div>
 <table>
-          <tr>
-            <th>作成日</th>
-            <th>タスク名</th>
-            <th>更新</th>
-            <th>削除</th>
-          </tr>
+    <tr>
+      <th>作成日</th>
+      <th>タスク名</th>
+      <th>更新</th>
+      <th>削除</th>
+    </tr>
 </table>
-</form>
 @endsection
-</div>
-</div>
 </body>
 </html>

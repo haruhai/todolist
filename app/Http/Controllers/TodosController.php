@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use App\Models\Update;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,26 +20,32 @@ class TodosController extends Controller
     }
     public function create(Request $request)
     {
-        // $param=[
-        //     //'id'=>$request->id,
-        //     'content'=>$request->content,
-        // ];
-        //DB::table('todos')->insert($param);
         $form = $request->all();
         Todo::create($form);
         return redirect('/');
     }
-    public function edit(Request $request)
-    {
-        $todos = Todos::find($request->id);
-        return view('edit', ['form' => $todos]);
+    public function update2(Request $request)
+    { 
+        $form=$request->all();
+        Todo::update($form);
+        $form->save();
+        return redirect('/');
     }
     public function update(Request $request)
     {
-        $this->validate($request, Todos::$rules);
         $form = $request->all();
         unset($form['_token']);
-        Todos::where('id', $request->id)->update($form);
+        Todo::where('id', $request->id)->update($form);
+        return redirect('/');
+    }
+     public function delete(Request $request)
+    {
+        $todo = Todo::find($request->id);
+        return view('delete', ['form' => $todo]);
+    }
+     public function remove(Request $request)
+    {
+        Todo::find($request->id)->delete();
         return redirect('/');
     }
 }
