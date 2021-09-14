@@ -19,16 +19,10 @@ class TodosController extends Controller
         return view('add');
     }
     public function create(Request $request)
-    {
+    {   $request->validate([
+        'content' => 'required|max:100']);
         $form = $request->all();
         Todo::create($form);
-        return redirect('/');
-    }
-    public function update2(Request $request)
-    { 
-        $form=$request->all();
-        Todo::update($form);
-        $form->save();
         return redirect('/');
     }
     public function update(Request $request)

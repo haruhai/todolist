@@ -220,6 +220,13 @@ input, select {
             <th>削除</th>
           </tr>
           @foreach ($items as $item)
+          @if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+    @endforeach
+    </ul>
+@endif
+    </ul>
           <tr>
             <form action="/todo/update" method="POST">
               @csrf
