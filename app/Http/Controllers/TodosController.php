@@ -20,7 +20,7 @@ class TodosController extends Controller
     }
     public function create(Request $request)
     {   $request->validate([
-        'content' => 'required|max:100']);
+        'content' => 'required|max:20']);
         $form = $request->all();
         Todo::create($form);
         return redirect('/');
