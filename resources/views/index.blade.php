@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -80,7 +79,7 @@
       hr {
         display:block;
         height:1px;
-        border:0;  
+        border:0;
         border-top:1px solid #cccccc;
         margin:1em 0;
         padding:0;
@@ -92,17 +91,20 @@
         margin:0;
         padding:0;
       }
-    .container {
+      .flex {
+      display: flex;
+      }
+      .container {
         background-color: #2d197c;
         height: 100vh;
         width: 100vw;
         position: relative;
       }
-    h1{
+      h1{
         font-weight: bold;
         font-size: 24px;
       }
-    .main {
+      .main {
         background-color: #fff;
         width: 50vw;
         padding: 30px;
@@ -112,19 +114,19 @@
         transform: translate(-50%, -50%);
         border-radius: 10px;
       }
-    input[type="text"]{
+      input[type="text"]{
         width:80%;
         border-radius: 5px;
         border: 1px solid #ccc;
       }
-    .todo-form{
+      .todo-form{
         height:37px;
         width:50vw;
         display:flex;
         justify-content:space-between;
         margin-top:20px;
       }
-    input[class="add-button"]{
+      input[class="add-button"]{
         border: 2px solid #dc70fa;
         font-size: 12px;
         color: #dc70fa;
@@ -135,6 +137,7 @@
         cursor: pointer;
         transition: 0.4s;
         outline: none;
+        display:flex;
       }
       input[class="update-button"]{
         border: 2px solid #fc5a1e;
@@ -160,30 +163,30 @@
         transition: 0.4s;
         outline: none;
       }
-       table {
+      table {
         margin:20px 20px;
         text-align: center;
         width: 48vw;
       }
-    .todo-content{
+      .todo-content{
         height:25px;
       }
-  .add-button:hover {
+      .add-button:hover {
         background-color: #dc70fa;
         border-color: #dc70fa;
         color: #fff;
       }
-    .update-button:hover {
+      .update-button:hover {
         background-color: #fc5a1e;
         border-color: #fc5a1e;
         color: #fff;
       }
-    .delete-button:hover {
+      .delete-button:hover {
         background-color: #1efccc;
         border-color: #1efccc;
         color: #fff;
       }
-        tr {
+      tr {
         height: 50px;
       }
   </style>
@@ -192,7 +195,7 @@
     <div class="container">
       <div class="main">
         <h1>Todo List</h1>
-          <form action="/todo/create" method="POST">
+          <form action="/todo/create" class="flex" method="POST">
           @csrf
           <div class="todo-form">
             <input type="text" name="content">
@@ -212,6 +215,8 @@
                 <li>{{$error}}</li>
                 @endforeach 
                 @endif
+                <div class="form-list">
+                <tr>
                 <form action="/todo/update" method="POST">
                   @csrf
                   <td width="30%">{{$item->created_at}}</td>
@@ -231,6 +236,8 @@
                     <input class="delete-button" type="submit" value="削除"/>
                   </td>
                 </form>
+                </tr>
+                </div>
                 @endforeach
             </table>
       </div>
