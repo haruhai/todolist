@@ -27,6 +27,8 @@ class TodosController extends Controller
     }
     public function update(Request $request)
     {
+        $request->validate([
+        'content' => 'required|max:20']);
         $form = $request->all();
         unset($form['_token']);
         Todo::where('id', $request->id)->update($form);

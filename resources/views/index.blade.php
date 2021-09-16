@@ -209,12 +209,12 @@
                   <th>更新</th>
                   <th>削除</th>
                 </tr>
-                @foreach ($items as $item)
                 @if ($errors->any())
                 @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
-                @endforeach 
+                @endforeach
                 @endif
+                @foreach ($items as $item)
                 <div class="form-list">
                 <tr>
                 <form action="/todo/update" method="POST">
